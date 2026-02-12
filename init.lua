@@ -609,6 +609,20 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
+        texlab = {},
+        ltex = {
+          cmd_env = {
+            JAVA_HOME = '/usr/lib/jvm/java-21-openjdk',
+          },
+          settings = {
+            ltex = {
+              language = 'de-DE',
+              additionalRules = {
+                enablePickyRules = true,
+              },
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -625,6 +639,8 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
         'pyright',
         'typescript-language-server',
+        'ltex-ls',
+        'texlab',
         -- clangd über dnf, rust-analyzer über rustup
         -- You can add other tools here that you want Mason to install
       })
@@ -879,6 +895,7 @@ require('lazy').setup({
         'javascript',
         'typescript',
         'java',
+        'latex',
       }
       require('nvim-treesitter').install(filetypes)
       vim.api.nvim_create_autocmd('FileType', {
@@ -891,6 +908,17 @@ require('lazy').setup({
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
+
+  { -- LaTeX support
+    'lervag/vimtex',
+    ft = 'tex',
+    config = function()
+      vim.g.vimtex_view_method = 'general'
+      vim.g.vimtex_view_general_viewer = 'okular'
+      vim.g.vimtex_view_general_options = '--unique file:@pdf\\#src:@line@tex'
+      vim.g.vimtex_compiler_method = 'latexmk'
+    end,
+  },
 
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
   --
