@@ -611,8 +611,11 @@ require('lazy').setup({
         ts_ls = {},
         texlab = {},
         ltex = {
-          cmd_env = {
-            JAVA_HOME = '/usr/lib/jvm/java-21-openjdk',
+          cmd = {
+            'env',
+            'JAVA_HOME=/usr/lib/jvm/java-25-openjdk',
+            'JAVA_OPTS=-Djdk.xml.totalEntitySizeLimit=0 -Djdk.xml.entityExpansionLimit=0 -Djdk.xml.maxOccurLimit=0 -Djdk.xml.elementAttributeLimit=0',
+            'ltex-ls',
           },
           settings = {
             ltex = {
