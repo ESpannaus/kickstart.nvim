@@ -923,6 +923,15 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'iamcco/markdown-preview.nvim',
+    ft = 'markdown',
+    build = ':call mkdp#util#install()',
+    keys = {
+      { '<leader>mp', '<cmd>MarkdownPreviewToggle<CR>', desc = '[M]arkdown [P]review' },
+    },
+  },
+
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
   --
   --  Here are some example plugins that I've included in the Kickstart repository.
