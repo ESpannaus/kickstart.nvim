@@ -620,7 +620,6 @@ require('lazy').setup({
         ltex = {
           cmd = {
             'env',
-            'JAVA_HOME=/usr/lib/jvm/java-25-openjdk',
             'JAVA_OPTS=-Djdk.xml.totalEntitySizeLimit=0 -Djdk.xml.entityExpansionLimit=0 -Djdk.xml.maxOccurLimit=0 -Djdk.xml.elementAttributeLimit=0',
             'ltex-ls',
           },
@@ -925,11 +924,11 @@ require('lazy').setup({
 
   { -- LaTeX support
     'lervag/vimtex',
-    ft = 'tex',
-    config = function()
-      vim.g.vimtex_view_method = 'general'
-      vim.g.vimtex_view_general_viewer = 'okular'
-      vim.g.vimtex_view_general_options = '--unique file:@pdf\\#src:@line@tex'
+    lazy = false,
+    init = function()
+      vim.g.vimtex_view_method = 'skim'
+      vim.g.vimtex_view_skim_sync = 1
+      vim.g.vimtex_view_skim_activate = 1
       vim.g.vimtex_compiler_method = 'latexmk'
     end,
   },
